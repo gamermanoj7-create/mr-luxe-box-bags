@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Admin Panel | MR Luxe Box & Bags</title>
+
+<link rel="stylesheet" href="style.css">
+
+<script type="module" src="admin.js"></script>
+
+</head>
+<script>
+const password = prompt("Enter Admin Password");
+
+if (password !== "MRLUXE2026") {
+    alert("Access Denied");
+    window.location.href = "index.html";
+}
+</script>
+<body>
+
+<header>
+
+<h1>MR Luxe Box & Bags</h1>
+
+<p>Admin Order Panel</p>
+<button id="logoutBtn">Logout</button>
+</header>
+
+<nav>
+
+<a href="index.html">Home</a>
+<a href="products.html">Products</a>
+<a href="cart.html">Cart</a>
+<a href="contact.html">Contact</a>
+
+</nav>
+
+<section class="admin">
+
+<h2>Customer Orders</h2>
+
+<div id="orders">
+
+Loading Orders...
+
+</div>
+
+</section>
+
+<footer>
+
+<p>© 2026 MR Luxe Box & Bags</p>
+
+</footer>
+
+</body>
+
+</html>
