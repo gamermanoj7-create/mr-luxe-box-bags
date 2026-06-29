@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Products | MR Luxe Box & Bags</title>
+
+<link rel="stylesheet" href="style.css">
+<script type="module" src="script.js"></script>
+
+</head>
+<body>
+
+<header>
+    <h1>MR Luxe Box & Bags</h1>
+    <p>Premium Jewellery Packaging Manufacturer</p>
+</header>
+
+<nav>
+    <a href="index.html">Home</a>
+    <a href="products.html">Products</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+    <a href="cart.html">Cart</a>
+</nav>
+
+<section class="products">
+
+    <!-- Jewellery Box -->
+    <div class="card">
+
+        <img src="IMAGES/box1.jpg" alt="Jewellery Box">
+
+        <h2>Jewellery Box</h2>
+
+        <p>Premium Velvet Jewellery Box</p>
+
+        <h3>₹120 / Piece</h3>
+
+        <label>Quantity (Minimum 100)</label>
+
+        <input
+        type="number"
+        id="qty1"
+        value="100"
+        min="100"
+        step="100">
+
+        <button
+        onclick="addToCart(
+        'Jewellery Box',
+        120,
+        document.getElementById('qty1').value
+        )">
+        Add To Cart
+        </button>
+
+    </div>
+
+    <!-- Non Woven Bag -->
+    <div class="card">
+
+        <img src="IMAGES/bag1.jpg" alt="Non Woven Bag">
+
+        <h2>Non Woven Bag</h2>
+
+        <p>Premium Shopping Bag</p>
+
+        <h3>₹25 / Piece</h3>
+
+        <label>Quantity (Minimum 100)</label>
+
+        <input
+        type="number"
+        id="qty2"
+        value="100"
+        min="100"
+        step="100">
+
+        <button
+        onclick="addToCart(
+        'Non Woven Bag',
+        25,
+        document.getElementById('qty2').value
+        )">
+        Add To Cart
+        </button>
+
+    </div>
+
+    <!-- Paper Bag -->
+    <div class="card">
+
+        <img src="IMAGES/bag2.jpg" alt="Paper Gift Bag">
+
+        <h2>Paper Gift Bag</h2>
+
+        <p>Luxury Printed Paper Bag</p>
+
+        <h3>₹35 / Piece</h3>
+
+        <label>Quantity (Minimum 100)</label>
+
+        <input
+        type="number"
+        id="qty3"
+        value="100"
+        min="100"
+        step="100">
+
+        <button
+        onclick="addToCart(
+        'Paper Gift Bag',
+        35,
+        document.getElementById('qty3').value
+        )">
+        Add To Cart
+        </button>
+
+    </div>
+
+</section>
+
+<footer>
+
+<p>© 2026 MR Luxe Box & Bags</p>
+
+<p>📞 +91 7029714746</p>
+
+<p>Kalyani, Nadia, West Bengal</p>
+
+</footer>
+
+</body>
+</html>
