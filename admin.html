@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Admin Panel | MR Luxe Box & Bags</title>
+
+<meta name="description" content="MR Luxe Box & Bags Admin Panel">
+
+<link rel="stylesheet" href="style.css">
+
+<script type="module" src="admin.js"></script>
+
+</head>
+
+<body>
+
+<!-- =========================
+HEADER
+========================= -->
+
+<header>
+
+<div class="logo">
+
+<h1>MR Luxe Box &amp; Bags</h1>
+
+<p>Premium Jewellery Packaging Manufacturer</p>
+
+</div>
+
+</header>
+
+<!-- =========================
+NAVIGATION
+========================= -->
+
+<nav>
+
+<a href="index.html">Home</a>
+
+<a href="products.html">Products</a>
+
+<a href="about.html">About</a>
+
+<a href="contact.html">Contact</a>
+
+<a href="cart.html">Cart</a>
+
+<a href="admin.html" class="active">Admin</a>
+
+</nav>
+
+<!-- =========================
+PAGE TITLE
+========================= -->
+
+<section class="page-title">
+
+<h2>Admin Dashboard</h2>
+
+<p>
+Manage Orders, Products & Customers
+</p>
+
+</section>
+<div class="admin-top">
+
+<h2>Admin Dashboard</h2>
+
+<button id="logoutBtn" class="logout-btn">
+
+Logout
+
+</button>
+
+</div>
+<!-- =========================
+DASHBOARD
+========================= -->
+
+<section class="dashboard">
+
+<div class="stat-box">
+
+<h2 id="totalOrders">0</h2>
+
+<p>Total Orders</p>
+
+</div>
+
+<div class="stat-box">
+
+<h2 id="pendingOrders">0</h2>
+
+<p>Pending Orders</p>
+
+</div>
+
+<div class="stat-box">
+
+<h2 id="totalProducts">3</h2>
+
+<p>Total Products</p>
+
+</div>
+
+<div class="stat-box">
+
+<h2 id="totalRevenue">₹0</h2>
+
+<p>Total Revenue</p>
+
+</div>
+
+</section>
+
+<!-- =========================
+ORDERS SECTION
+========================= -->
+
+<section class="admin-orders">
+
+<h2>Customer Orders</h2>
+
+<div id="ordersContainer">
+
+<!-- Firebase Orders will load here -->
+
+</div>
+<!-- =========================
+SEARCH
+========================= -->
+
+<div class="admin-search">
+
+<input
+type="text"
+id="searchOrder"
+placeholder="Search by Customer Name or Phone">
+
+<button onclick="searchOrders()">
+
+Search
+
+</button>
+
+</div>
+
+<!-- =========================
+PRODUCT MANAGEMENT
+========================= -->
+
+<section class="admin-products">
+
+<h2>Product Management</h2>
+
+<div class="admin-buttons">
+
+<button onclick="addProduct()">
+
+➕ Add Product
+
+</button>
+
+<button onclick="editProduct()">
+
+✏ Edit Product
+
+</button>
+
+<button onclick="deleteProduct()">
+
+🗑 Delete Product
+
+</button>
+
+</div>
+
+</section>
+
+<!-- =========================
+ORDER ACTIONS
+========================= -->
+
+<section class="admin-actions">
+
+<h2>Order Actions</h2>
+
+<div class="admin-buttons">
+
+<button onclick="refreshOrders()">
+
+🔄 Refresh Orders
+
+</button>
+
+<button onclick="printOrders()">
+
+🖨 Print Orders
+
+</button>
+
+<button onclick="exportOrders()">
+
+📥 Export Orders
+
+</button>
+
+</div>
+
+</section>
+
+<!-- =========================
+CUSTOMERS
+========================= -->
+
+<section class="admin-customers">
+
+<h2>Customers</h2>
+
+<div id="customerList">
+
+<!-- Customer List Loaded by JavaScript -->
+
+</div>
+
+</section>
+</section>
+
+<!-- =========================
+FOOTER
+========================= -->
+
+<footer>
+
+<p><strong>MR Luxe Box &amp; Bags</strong></p>
+
+<p>Premium Jewellery Packaging Manufacturer</p>
+
+<p>📍 Kalyani, Nadia, West Bengal</p>
+
+<p>📞 +91 7029714746</p>
+
+<p>📧 mrluxeboxbags@gmail.com</p>
+
+<p>© 2026 MR Luxe Box &amp; Bags. All Rights Reserved.</p>
+
+</footer>
+
+<!-- =========================
+CALL BUTTON
+========================= -->
+
+<a href="tel:+917029714746"
+class="call-btn">
+
+📞
+
+</a>
+
+<!-- =========================
+WHATSAPP BUTTON
+========================= -->
+
+<a href="https://wa.me/917029714746"
+class="whatsapp-float"
+target="_blank">
+
+💬
+
+</a>
+
+<script type="module" src="admin.js"></script>
+
+</body>
+</html>
+.
