@@ -1,0 +1,1577 @@
+/* ==========================================
+MR LUXE BOX & BAGS
+PREMIUM LUXURY CSS
+PART 1
+========================================== */
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',Arial,sans-serif;
+}
+
+html{
+scroll-behavior:smooth;
+}
+
+body{
+background:#f7f7f7;
+color:#222;
+overflow-x:hidden;
+}
+
+/* HEADER */
+
+header{
+background:#0b0b0b;
+padding:35px 20px;
+text-align:center;
+position:sticky;
+top:0;
+z-index:999;
+box-shadow:0 5px 20px rgba(0,0,0,.4);
+}
+
+header h1{
+color:#fff;
+font-size:42px;
+font-weight:800;
+letter-spacing:3px;
+text-transform:uppercase;
+text-shadow:
+0 0 8px gold,
+0 0 18px gold,
+0 0 35px rgba(255,215,0,.7);
+animation:glow 2s infinite alternate;
+}
+
+header p{
+margin-top:10px;
+color:#d5d5d5;
+font-size:18px;
+}
+
+@keyframes glow{
+
+0%{
+text-shadow:
+0 0 8px gold,
+0 0 18px gold;
+}
+
+100%{
+text-shadow:
+0 0 12px gold,
+0 0 25px gold,
+0 0 40px gold;
+}
+
+}
+
+/* NAVBAR */
+
+nav{
+
+background:#171717;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+gap:35px;
+
+padding:18px;
+
+flex-wrap:wrap;
+
+}
+
+nav a{
+
+color:white;
+
+text-decoration:none;
+
+font-size:18px;
+
+font-weight:600;
+
+transition:.3s;
+
+position:relative;
+
+}
+
+nav a:hover{
+
+color:gold;
+
+}
+
+nav a::after{
+
+content:"";
+
+position:absolute;
+
+left:0;
+
+bottom:-8px;
+
+width:0;
+
+height:2px;
+
+background:gold;
+
+transition:.4s;
+
+}
+
+nav a:hover::after{
+
+width:100%;
+
+}
+
+/* HERO */
+
+.hero{
+
+height:90vh;
+
+display:flex;
+
+flex-direction:column;
+
+justify-content:center;
+
+align-items:center;
+
+text-align:center;
+
+padding:30px;
+
+background:
+linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.55)),
+url("IMAGES/banner.jpg");
+
+background-size:cover;
+
+background-position:center;
+
+color:white;
+
+}
+
+.hero h2{
+
+font-size:70px;
+
+font-weight:800;
+
+margin-bottom:20px;
+
+text-shadow:0 0 18px rgba(255,215,0,.8);
+
+}
+
+.hero p{
+
+font-size:24px;
+
+max-width:900px;
+
+margin-bottom:35px;
+
+color:#f1f1f1;
+
+}
+
+.hero button{
+
+padding:18px 45px;
+
+border:none;
+
+border-radius:12px;
+
+background:linear-gradient(90deg,#FFD700,#B8860B);
+
+font-size:20px;
+
+font-weight:bold;
+
+cursor:pointer;
+
+transition:.4s;
+
+}
+
+.hero button:hover{
+
+transform:translateY(-5px);
+
+box-shadow:0 10px 25px rgba(255,215,0,.5);
+
+}
+
+/* SECTION TITLE */
+
+.section-title{
+
+text-align:center;
+
+font-size:46px;
+
+font-weight:800;
+
+margin:70px 0 50px;
+
+color:#111;
+
+position:relative;
+
+}
+
+.section-title::after{
+
+content:"";
+
+width:120px;
+
+height:5px;
+
+background:gold;
+
+display:block;
+
+margin:18px auto;
+
+border-radius:50px;
+
+}
+/* ==========================================
+MR LUXE BOX & BAGS
+PREMIUM CSS
+PART 2
+PRODUCT SECTION
+========================================== */
+
+/* PRODUCT SECTION */
+
+.products{
+
+max-width:1500px;
+
+margin:auto;
+
+padding:60px 30px;
+
+display:grid;
+
+grid-template-columns:repeat(auto-fit,minmax(350px,1fr));
+
+gap:35px;
+
+}
+
+/* PRODUCT CARD */
+
+.card{
+
+background:#fff;
+
+border-radius:22px;
+
+overflow:hidden;
+
+box-shadow:0 12px 35px rgba(0,0,0,.15);
+
+transition:.4s;
+
+position:relative;
+
+border:2px solid rgba(255,215,0,.18);
+
+}
+
+.card:hover{
+
+transform:translateY(-12px);
+
+box-shadow:
+
+0 25px 60px rgba(0,0,0,.25),
+
+0 0 25px rgba(255,215,0,.45);
+
+}
+
+/* GOLD SHINE */
+
+.card::before{
+
+content:"";
+
+position:absolute;
+
+top:-120%;
+
+left:-120%;
+
+width:250%;
+
+height:250%;
+
+background:linear-gradient(
+
+45deg,
+
+transparent,
+
+rgba(255,255,255,.35),
+
+transparent
+
+);
+
+transform:rotate(25deg);
+
+transition:1s;
+
+}
+
+.card:hover::before{
+
+top:120%;
+
+left:120%;
+
+}
+
+/* PRODUCT IMAGE */
+
+.card img{
+
+width:100%;
+
+height:320px;
+
+object-fit:cover;
+
+display:block;
+
+transition:.5s;
+
+}
+
+.card:hover img{
+
+transform:scale(1.08);
+
+}
+
+/* PRODUCT TITLE */
+
+.card h3{
+
+font-size:34px;
+
+padding:25px 25px 10px;
+
+font-weight:800;
+
+color:#111;
+
+}
+
+/* DESCRIPTION */
+
+.card p{
+
+padding:0 25px;
+
+font-size:18px;
+
+color:#666;
+
+line-height:1.8;
+
+}
+
+/* PRICE */
+
+.card h4{
+
+padding:20px 25px;
+
+font-size:38px;
+
+font-weight:800;
+
+color:#C89B00;
+
+}
+
+/* LABEL */
+
+.card label{
+
+display:block;
+
+padding:0 25px;
+
+font-size:18px;
+
+font-weight:700;
+
+margin-bottom:10px;
+
+}
+
+/* INPUT */
+
+.card input{
+
+width:calc(100% - 50px);
+
+margin:0 25px;
+
+padding:16px;
+
+font-size:18px;
+
+border:2px solid #ddd;
+
+border-radius:12px;
+
+outline:none;
+
+transition:.3s;
+
+}
+
+.card input:focus{
+
+border-color:gold;
+
+box-shadow:0 0 15px rgba(255,215,0,.35);
+
+}
+
+/* BUTTON */
+
+.card button{
+
+width:calc(100% - 50px);
+
+margin:25px;
+
+padding:18px;
+
+background:#111;
+
+color:#fff;
+
+font-size:19px;
+
+font-weight:700;
+
+border:none;
+
+border-radius:12px;
+
+cursor:pointer;
+
+transition:.4s;
+
+}
+
+.card button:hover{
+
+background:linear-gradient(90deg,#FFD700,#B8860B);
+
+color:#111;
+
+transform:scale(1.03);
+
+}
+/* ==========================================
+MR LUXE BOX & BAGS
+PREMIUM CSS
+PART 3
+CART + CHECKOUT
+========================================== */
+
+/* CART */
+
+.cart{
+
+max-width:1200px;
+
+margin:60px auto;
+
+padding:35px;
+
+background:#fff;
+
+border-radius:25px;
+
+box-shadow:0 15px 40px rgba(0,0,0,.15);
+
+}
+
+.cart h2{
+
+font-size:40px;
+
+margin-bottom:30px;
+
+font-weight:800;
+
+}
+
+/* CART ITEM */
+
+.cart-item{
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+flex-wrap:wrap;
+
+gap:25px;
+
+padding:25px;
+
+margin-bottom:25px;
+
+background:#fafafa;
+
+border-left:6px solid gold;
+
+border-radius:18px;
+
+transition:.3s;
+
+}
+
+.cart-item:hover{
+
+transform:translateY(-5px);
+
+box-shadow:0 12px 25px rgba(0,0,0,.12);
+
+}
+
+.cart-item h3{
+
+font-size:30px;
+
+margin-bottom:12px;
+
+}
+
+.cart-item p{
+
+font-size:18px;
+
+margin:8px 0;
+
+}
+
+/* REMOVE BUTTON */
+
+.cart-item button{
+
+padding:14px 28px;
+
+background:#dc3545;
+
+color:#fff;
+
+border:none;
+
+border-radius:10px;
+
+font-size:17px;
+
+font-weight:bold;
+
+cursor:pointer;
+
+transition:.3s;
+
+}
+
+.cart-item button:hover{
+
+background:#b91c1c;
+
+}
+
+/* TOTAL */
+
+#total{
+
+font-size:48px;
+
+font-weight:800;
+
+color:#C89B00;
+
+}
+
+/* BUTTON GROUP */
+
+.cart-buttons{
+
+display:flex;
+
+gap:25px;
+
+margin-top:35px;
+
+flex-wrap:wrap;
+
+}
+
+/* BUTTON */
+
+.cart-buttons button,
+
+.checkout-btn{
+
+flex:1;
+
+height:60px;
+
+border:none;
+
+border-radius:12px;
+
+font-size:20px;
+
+font-weight:700;
+
+cursor:pointer;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+text-decoration:none;
+
+transition:.3s;
+
+}
+
+/* CLEAR */
+
+.cart-buttons button{
+
+background:#dc3545;
+
+color:#fff;
+
+}
+
+/* CHECKOUT */
+
+.checkout-btn{
+
+background:#111;
+
+color:#fff;
+
+}
+
+/* HOVER */
+
+.cart-buttons button:hover{
+
+background:#b91c1c;
+
+transform:translateY(-3px);
+
+}
+
+.checkout-btn:hover{
+
+background:linear-gradient(90deg,#FFD700,#B8860B);
+
+color:#111;
+
+transform:translateY(-3px);
+
+}
+
+/* CHECKOUT PAGE */
+
+.checkout{
+
+max-width:850px;
+
+margin:60px auto;
+
+background:#fff;
+
+padding:35px;
+
+border-radius:25px;
+
+box-shadow:0 15px 35px rgba(0,0,0,.15);
+
+}
+
+.checkout h2{
+
+font-size:38px;
+
+margin-bottom:25px;
+
+}
+
+.checkout input,
+
+.checkout textarea,
+
+.checkout select{
+
+width:100%;
+
+padding:16px;
+
+font-size:18px;
+
+margin-bottom:20px;
+
+border:2px solid #ddd;
+
+border-radius:12px;
+
+outline:none;
+
+}
+
+.checkout input:focus,
+
+.checkout textarea:focus,
+
+.checkout select:focus{
+
+border-color:gold;
+
+box-shadow:0 0 15px rgba(255,215,0,.35);
+
+}
+
+.checkout button{
+
+width:100%;
+
+padding:18px;
+
+background:#111;
+
+color:#fff;
+
+font-size:20px;
+
+font-weight:700;
+
+border:none;
+
+border-radius:12px;
+
+cursor:pointer;
+
+transition:.3s;
+
+}
+
+.checkout button:hover{
+
+background:linear-gradient(90deg,#FFD700,#B8860B);
+
+color:#111;
+
+}
+/* ==========================================
+MR LUXE BOX & BAGS
+PREMIUM CSS
+PART 4
+ABOUT • CONTACT • FOOTER
+========================================== */
+
+/* ABOUT */
+
+.about{
+
+max-width:1200px;
+
+margin:60px auto;
+
+padding:40px;
+
+background:#fff;
+
+border-radius:25px;
+
+box-shadow:0 15px 35px rgba(0,0,0,.15);
+
+}
+
+.about h2{
+
+font-size:42px;
+
+margin-bottom:25px;
+
+text-align:center;
+
+font-weight:800;
+
+}
+
+.about p{
+
+font-size:19px;
+
+line-height:1.9;
+
+color:#555;
+
+margin-bottom:18px;
+
+}
+
+.about ul{
+
+margin-top:25px;
+
+padding-left:25px;
+
+}
+
+.about li{
+
+font-size:18px;
+
+margin-bottom:12px;
+
+}
+
+/* CONTACT */
+
+.contact{
+
+max-width:900px;
+
+margin:60px auto;
+
+padding:40px;
+
+background:#fff;
+
+border-radius:25px;
+
+box-shadow:0 15px 35px rgba(0,0,0,.15);
+
+}
+
+.contact h2{
+
+font-size:40px;
+
+margin-bottom:30px;
+
+text-align:center;
+
+}
+
+.contact input,
+
+.contact textarea{
+
+width:100%;
+
+padding:18px;
+
+margin-bottom:20px;
+
+border:2px solid #ddd;
+
+border-radius:12px;
+
+font-size:18px;
+
+outline:none;
+
+}
+
+.contact input:focus,
+
+.contact textarea:focus{
+
+border-color:gold;
+
+box-shadow:0 0 15px rgba(255,215,0,.35);
+
+}
+
+.contact textarea{
+
+height:180px;
+
+resize:none;
+
+}
+
+.contact button{
+
+width:100%;
+
+padding:18px;
+
+background:#111;
+
+color:#fff;
+
+font-size:20px;
+
+font-weight:bold;
+
+border:none;
+
+border-radius:12px;
+
+cursor:pointer;
+
+transition:.3s;
+
+}
+
+.contact button:hover{
+
+background:linear-gradient(90deg,#FFD700,#B8860B);
+
+color:#111;
+
+}
+
+/* FOOTER */
+
+footer{
+
+background:#050505;
+
+color:#fff;
+
+text-align:center;
+
+padding:45px 20px;
+
+margin-top:70px;
+
+border-top:4px solid gold;
+
+}
+
+footer h3{
+
+font-size:30px;
+
+margin-bottom:18px;
+
+}
+
+footer p{
+
+font-size:17px;
+
+margin:10px 0;
+
+color:#ddd;
+
+}
+
+footer a{
+
+color:gold;
+
+text-decoration:none;
+
+}
+
+footer a:hover{
+
+color:#fff;
+
+}
+
+/* FLOAT BUTTON */
+
+.whatsapp-float{
+
+position:fixed;
+
+right:20px;
+
+bottom:20px;
+
+width:65px;
+
+height:65px;
+
+background:#25D366;
+
+border-radius:50%;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+font-size:32px;
+
+color:#fff;
+
+text-decoration:none;
+
+box-shadow:0 10px 25px rgba(0,0,0,.35);
+
+z-index:999;
+
+transition:.3s;
+
+}
+
+.whatsapp-float:hover{
+
+transform:scale(1.12);
+
+}
+
+.call-btn{
+
+position:fixed;
+
+left:20px;
+
+bottom:20px;
+
+width:65px;
+
+height:65px;
+
+background:#007bff;
+
+border-radius:50%;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+font-size:32px;
+
+color:#fff;
+
+text-decoration:none;
+
+box-shadow:0 10px 25px rgba(0,0,0,.35);
+
+z-index:999;
+
+transition:.3s;
+
+}
+
+.call-btn:hover{
+
+transform:scale(1.12);
+
+}
+/* ==========================================
+MR LUXE BOX & BAGS
+STYLE.CSS
+PART 5
+MOBILE + PREMIUM EFFECTS
+========================================== */
+
+/* MOBILE */
+
+@media (max-width:992px){
+
+.hero h2{
+font-size:48px;
+}
+
+.hero p{
+font-size:20px;
+}
+
+.products{
+grid-template-columns:repeat(2,1fr);
+}
+
+}
+
+@media (max-width:768px){
+
+header h1{
+font-size:26px;
+letter-spacing:1px;
+}
+
+header p{
+font-size:15px;
+}
+
+nav{
+gap:15px;
+padding:15px;
+}
+
+nav a{
+font-size:16px;
+}
+
+.hero{
+height:70vh;
+padding:25px;
+}
+
+.hero h2{
+font-size:34px;
+}
+
+.hero p{
+font-size:17px;
+}
+
+.section-title{
+font-size:32px;
+}
+
+.products{
+grid-template-columns:1fr;
+padding:20px;
+}
+
+.card img{
+height:240px;
+}
+
+.card h3{
+font-size:26px;
+}
+
+.card h4{
+font-size:28px;
+}
+
+.cart{
+padding:20px;
+}
+
+.cart-item{
+flex-direction:column;
+align-items:flex-start;
+}
+
+.cart-buttons{
+flex-direction:column;
+}
+
+.cart-buttons button,
+.checkout-btn{
+width:100%;
+}
+
+.checkout,
+.contact,
+.about{
+width:95%;
+padding:20px;
+}
+
+.whatsapp-float,
+.call-btn{
+width:55px;
+height:55px;
+font-size:28px;
+}
+
+}
+
+@media (max-width:480px){
+
+.hero h2{
+font-size:28px;
+}
+
+.hero p{
+font-size:15px;
+}
+
+header h1{
+font-size:22px;
+}
+
+.section-title{
+font-size:28px;
+}
+
+.card img{
+height:220px;
+}
+
+}
+
+/* PREMIUM ANIMATION */
+
+.card{
+animation:fadeUp .6s ease;
+}
+
+@keyframes fadeUp{
+
+from{
+opacity:0;
+transform:translateY(30px);
+}
+
+to{
+opacity:1;
+transform:translateY(0);
+}
+
+}
+
+/* GLASS EFFECT */
+
+.card,
+.cart,
+.checkout,
+.contact,
+.about{
+
+backdrop-filter:blur(15px);
+
+background:rgba(255,255,255,.95);
+
+}
+
+/* GOLD GLOW */
+
+.card:hover{
+
+border:2px solid gold;
+
+box-shadow:
+
+0 20px 45px rgba(0,0,0,.25),
+
+0 0 20px rgba(255,215,0,.45);
+
+}
+
+/* IMAGE ZOOM */
+
+.card img{
+
+transition:.5s;
+
+}
+
+.card:hover img{
+
+transform:scale(1.08);
+
+}
+
+/* BUTTON EFFECT */
+
+button{
+
+transition:.3s;
+
+}
+
+button:hover{
+
+transform:translateY(-3px);
+
+}
+
+/* SMOOTH PAGE */
+
+body{
+
+animation:pageFade .7s ease;
+
+}
+
+@keyframes pageFade{
+
+from{
+
+opacity:0;
+
+}
+
+to{
+
+opacity:1;
+
+}
+
+}
+/* ==========================================
+MR LUXE BOX & BAGS
+STYLE.CSS
+PART 6 (FINAL)
+========================================== */
+
+/* GOLD SHINE EFFECT */
+
+.card::after{
+
+content:"";
+
+position:absolute;
+
+top:-150%;
+
+left:-150%;
+
+width:250%;
+
+height:250%;
+
+background:linear-gradient(
+45deg,
+transparent,
+rgba(255,255,255,.35),
+transparent
+);
+
+transform:rotate(25deg);
+
+transition:1s;
+
+pointer-events:none;
+
+}
+
+.card:hover::after{
+
+top:150%;
+
+left:150%;
+
+}
+
+/* GOLD TEXT */
+
+.gold-text{
+
+background:linear-gradient(90deg,#FFD700,#B8860B);
+
+-webkit-background-clip:text;
+
+-webkit-text-fill-color:transparent;
+
+}
+
+/* PREMIUM BADGE */
+
+.badge{
+
+display:inline-block;
+
+padding:8px 18px;
+
+background:linear-gradient(90deg,#FFD700,#B8860B);
+
+color:#111;
+
+font-weight:bold;
+
+border-radius:40px;
+
+font-size:14px;
+
+box-shadow:0 0 15px rgba(255,215,0,.45);
+
+}
+
+/* SCROLLBAR */
+
+::-webkit-scrollbar{
+
+width:10px;
+
+}
+
+::-webkit-scrollbar-track{
+
+background:#111;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+background:linear-gradient(#FFD700,#B8860B);
+
+border-radius:20px;
+
+}
+
+/* IMAGE BORDER */
+
+img{
+
+border-radius:12px;
+
+}
+
+/* TEXT SELECTION */
+
+::selection{
+
+background:gold;
+
+color:#111;
+
+}
+
+/* INPUT EFFECT */
+
+input:focus,
+textarea:focus,
+select:focus{
+
+transform:scale(1.02);
+
+}
+
+/* FOOTER GLOW */
+
+footer{
+
+animation:footerGlow 3s infinite alternate;
+
+}
+
+@keyframes footerGlow{
+
+from{
+
+box-shadow:0 0 10px rgba(255,215,0,.15);
+
+}
+
+to{
+
+box-shadow:0 0 25px rgba(255,215,0,.45);
+
+}
+
+}
+
+/* FLOATING BUTTON */
+
+.whatsapp-float,
+.call-btn{
+
+animation:floating 2s infinite;
+
+}
+
+@keyframes floating{
+
+0%{
+
+transform:translateY(0);
+
+}
+
+50%{
+
+transform:translateY(-8px);
+
+}
+
+100%{
+
+transform:translateY(0);
+
+}
+
+}
+
+/* PREMIUM LOADER */
+
+.loader{
+
+width:70px;
+
+height:70px;
+
+border:6px solid #eee;
+
+border-top:6px solid gold;
+
+border-radius:50%;
+
+animation:spin 1s linear infinite;
+
+margin:auto;
+
+}
+
+@keyframes spin{
+
+100%{
+
+transform:rotate(360deg);
+
+}
+
+}
+
+/* HOVER EFFECT */
+
+a{
+
+transition:.3s;
+
+}
+
+a:hover{
+
+opacity:.9;
+
+}
+
+/* FINAL FINISH */
+
+body{
+
+overflow-x:hidden;
+
+}
