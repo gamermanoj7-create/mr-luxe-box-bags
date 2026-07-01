@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Products | MR Luxe Box & Bags</title>
+
+<meta name="description" content="Premium Jewellery Packaging Manufacturer">
+
+<link rel="stylesheet" href="style.css">
+
+<script type="module" src="script.js"></script>
+
+</head>
+
+<body>
+
+<!-- =========================
+HEADER
+========================= -->
+
+<header>
+
+    <div class="logo">
+
+        <h1>MR Luxe Box & Bags</h1>
+
+        <p>Premium Jewellery Packaging Manufacturer</p>
+
+    </div>
+
+</header>
+
+<!-- =========================
+NAVIGATION
+========================= -->
+
+<nav>
+
+    <a href="index.html">Home</a>
+
+    <a href="products.html" class="active">Products</a>
+<a href="my-orders.html">My Orders</a>
+    <a href="about.html">About</a>
+
+    <a href="contact.html">Contact</a>
+
+    <a href="cart.html">Cart</a>
+
+    <a href="admin.html">Admin</a>
+
+</nav>
+
+<!-- =========================
+PAGE TITLE
+========================= -->
+
+<section class="page-title">
+
+    <h2>Premium Products</h2>
+
+    <p>
+        Luxury Jewellery Boxes • Non Woven Bags • Premium Paper Bags
+    </p>
+
+</section>
+
+<!-- =========================
+PRODUCTS
+========================= -->
+
+<section class="products">
+  <!-- =========================
+PRODUCT 1
+========================= -->
+
+<div class="card">
+
+    <img src="IMAGES/box1 (1).jpg" alt="Jewellery Box">
+
+    <h2>Premium Jewellery Box</h2>
+
+    <p>
+        Luxury Velvet Jewellery Box with Premium Finish.
+    </p>
+
+    <h3>₹120 <span>/ Piece</span></h3>
+
+    <label>Quantity (Minimum Order 100)</label>
+
+    <input
+        type="number"
+        id="qty1"
+        value="100"
+        min="100"
+        step="100">
+
+    <button onclick="addToCart(
+        'Premium Jewellery Box',
+        120,
+        document.getElementById('qty1').value
+    )">
+        ADD TO CART
+    </button>
+
+</div>
+
+<!-- =========================
+PRODUCT 2
+========================= -->
+
+<div class="card">
+
+    <img src="IMAGES/Nonwovenbag1.jpg" alt="Non Woven Bag">
+
+    <h2>Premium Non Woven Bag</h2>
+
+    <p>
+        Premium Printed Shopping Bag for Jewellery Stores.
+    </p>
+
+    <h3>₹25 <span>/ Piece</span></h3>
+
+    <label>Quantity (Minimum Order 100)</label>
+
+    <input
+        type="number"
+        id="qty2"
+        value="100"
+        min="100"
+        step="100">
+
+    <button onclick="addToCart(
+        'Premium Non Woven Bag',
+        25,
+        document.getElementById('qty2').value
+    )">
+        ADD TO CART
+    </button>
+
+</div>
+<!-- =========================
+PRODUCT 3
+========================= -->
+
+<div class="card">
+
+    <img src="IMAGES/Pepperbag (1).jpg" alt="Paper Bag">
+
+    <h2>Premium Paper Bag</h2>
+
+    <p>
+        Luxury Printed Paper Gift Bag for Jewellery Packaging.
+    </p>
+
+    <h3>₹35 <span>/ Piece</span></h3>
+
+    <label>Quantity (Minimum Order 100)</label>
+
+    <input
+        type="number"
+        id="qty3"
+        value="100"
+        min="100"
+        step="100">
+
+    <button onclick="addToCart(
+        'Premium Paper Bag',
+        35,
+        document.getElementById('qty3').value
+    )">
+        ADD TO CART
+    </button>
+
+</div>
+
+</section>
+
+<!-- =========================
+FOOTER
+========================= -->
+
+<footer>
+
+    <p><strong>MR Luxe Box & Bags</strong></p>
+
+    <p>Premium Jewellery Packaging Manufacturer</p>
+
+    <p>📍 Kalyani, Nadia, West Bengal</p>
+
+    <p>📞 +91 7029714746</p>
+
+    <p>📧 mrluxeboxbags@gmail.com</p>
+
+    <p>© 2026 MR Luxe Box & Bags. All Rights Reserved.</p>
+
+</footer>
+
+<!-- =========================
+WHATSAPP BUTTON
+========================= -->
+
+<a href="https://wa.me/917029714746"
+   class="whatsapp-float"
+   target="_blank">
+
+    💬
+
+</a>
+
+<!-- =========================
+CALL BUTTON
+========================= -->
+
+<a href="tel:+917029714746"
+   class="call-btn">
+
+    📞
+
+</a>
+
+</body>
+</html>
