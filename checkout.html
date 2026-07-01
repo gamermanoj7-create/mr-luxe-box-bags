@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>
+Checkout | MR Luxe Box & Bags
+</title>
+
+<meta name="description"
+content="Secure Checkout - MR Luxe Box & Bags">
+
+<link
+rel="stylesheet"
+href="style.css">
+
+<script
+type="module"
+src="script.js"
+defer>
+</script>
+
+</head>
+
+<body>
+
+<!-- =========================
+HEADER
+========================= -->
+
+<header>
+
+<div class="logo">
+
+<h1>
+MR Luxe Box & Bags
+</h1>
+
+<p>
+Premium Jewellery Packaging Manufacturer
+</p>
+
+</div>
+
+</header>
+
+<!-- =========================
+NAVIGATION
+========================= -->
+
+<nav>
+
+<a href="index.html">
+Home
+</a>
+
+<a href="products.html">
+Products
+</a>
+
+<a href="about.html">
+About
+</a>
+
+<a href="contact.html">
+Contact
+</a>
+
+<a href="cart.html">
+Cart
+</a>
+
+<a href="admin.html">
+Admin
+</a>
+
+</nav>
+
+<!-- =========================
+PAGE TITLE
+========================= -->
+
+<section class="page-title">
+
+<h2>
+Secure Checkout
+</h2>
+
+<p>
+Complete your order safely and securely.
+</p>
+
+</section>
+
+<!-- =========================
+CHECKOUT START
+========================= -->
+
+<section class="checkout-container">
+
+<div class="checkout-form">
+
+<h2>
+Customer Information
+</h2>
+
+<label for="name">
+Full Name
+</label>
+
+<input
+type="text"
+id="name"
+placeholder="Enter Full Name"
+required>
+
+<label for="phone">
+Mobile Number
+</label>
+
+<input
+type="tel"
+id="phone"
+placeholder="Enter Mobile Number"
+required>
+
+<label for="address">
+Delivery Address
+</label>
+
+<textarea
+id="address"
+placeholder="Enter Full Address"
+required></textarea>
+
+<label for="state">
+State
+</label>
+
+<input
+type="text"
+id="state"
+placeholder="West Bengal">
+
+<label for="pincode">
+PIN Code
+</label>
+
+<input
+type="number"
+id="pincode"
+placeholder="741235">
+<!-- =========================
+PRINTING DETAILS
+========================= -->
+
+<div class="checkout-form">
+
+<h2>
+Printing Details
+</h2>
+
+<label for="printingType">
+Printing Type
+</label>
+
+<select id="printingType">
+
+<option value="Plain">
+Plain (No Print)
+</option>
+
+<option value="Screen Printing">
+Screen Printing
+</option>
+
+<option value="Digital Printing">
+Digital Printing
+</option>
+
+<option value="Foil Printing">
+Foil Printing
+</option>
+
+<option value="UV Printing">
+UV Printing
+</option>
+
+</select>
+
+</div>
+
+<!-- =========================
+CUSTOM DESIGN UPLOAD
+========================= -->
+
+<div class="checkout-form">
+
+<h2>
+Custom Design Upload
+</h2>
+
+<input
+type="file"
+id="designFile"
+accept=".jpg,.jpeg,.png,.pdf,.ai,.cdr">
+
+<div id="previewBox"></div>
+
+<div class="progress">
+
+<div id="uploadProgress"></div>
+
+</div>
+
+<p class="upload-note">
+
+Supported Files:
+JPG, PNG, PDF, AI, CDR
+
+</p>
+
+</div>
+
+<!-- =========================
+PAYMENT METHOD
+========================= -->
+
+<div class="checkout-form">
+
+<h2>
+Payment Method
+</h2>
+
+<label for="payment">
+
+Select Payment Method
+
+</label>
+
+<select id="payment" required>
+
+<option value="">
+Choose Payment Method
+</option>
+
+<option value="UPI">
+UPI
+</option>
+
+<option value="Bank Transfer">
+Bank Transfer
+</option>
+
+<option value="Cash On Delivery">
+Cash On Delivery
+</option>
+
+</select>
+
+</div>
+
+<!-- =========================
+UPI PAYMENT
+========================= -->
+
+<div class="upi-box">
+
+<h3>
+UPI Payment
+</h3>
+
+<p class="upi-id">
+
+UPI ID:
+<strong>
+7029714746-2@ybl
+</strong>
+
+</p>
+
+<p>
+
+After completing payment,
+click the Place Order button.
+
+</p>
+
+</div>
+<!-- =========================
+DESIGN CHARGE
+========================= -->
+
+<div class="checkout-form">
+
+<h2>
+Design Setup
+</h2>
+
+<label for="designCharge">
+Design Charge
+</label>
+
+<select id="designCharge">
+
+<option value="0">
+Existing Design (₹0)
+</option>
+
+<option value="500">
+New Design (₹500)
+</option>
+
+<option value="1000">
+Premium Design (₹1000)
+</option>
+
+</select>
+
+</div>
+
+<!-- =========================
+DELIVERY AREA
+========================= -->
+
+<div class="checkout-form">
+
+<h2>
+Delivery Area
+</h2>
+
+<label for="deliveryArea">
+Select Delivery Area
+</label>
+
+<select id="deliveryArea">
+
+<option value="0">
+Kalyani (Free Delivery)
+</option>
+
+<option value="100">
+Nadia (+₹100)
+</option>
+
+<option value="250">
+Kolkata (+₹250)
+</option>
+
+<option value="350">
+Other West Bengal (+₹350)
+</option>
+
+<option value="600">
+Other State (+₹600)
+</option>
+
+</select>
+
+</div>
+
+<!-- =========================
+ORDER SUMMARY
+========================= -->
+
+<div class="order-summary">
+
+<h2>
+Order Summary
+</h2>
+
+<p>
+<span>Total Products</span>
+<strong id="totalItems">0</strong>
+</p>
+
+<p>
+<span>Product Total</span>
+<strong id="productTotal">₹0</strong>
+</p>
+
+<p>
+<span>Printing Charge</span>
+<strong id="printingCharge">₹0</strong>
+</p>
+
+<p>
+<span>Design Charge</span>
+<strong id="designPrice">₹0</strong>
+</p>
+
+<p>
+<span>Delivery Charge</span>
+<strong id="deliveryPrice">₹0</strong>
+</p>
+
+<hr>
+
+<h2>
+
+Grand Total
+
+<span id="grandTotalPrice">
+₹0
+</span>
+
+</h2>
+
+</div>
+<!-- =========================
+ADDITIONAL NOTE
+========================= -->
+
+<div class="checkout-form">
+
+<h2>
+Additional Note
+</h2>
+
+<textarea
+id="orderNote"
+placeholder="Write any special instructions (Optional)">
+</textarea>
+
+</div>
+
+<!-- =========================
+TERMS & CONDITIONS
+========================= -->
+
+<div class="checkout-form">
+
+<label class="terms-box">
+
+<input
+type="checkbox"
+id="acceptTerms"
+required>
+
+I confirm that all order details are correct and I agree to the Terms & Conditions.
+
+</label>
+
+</div>
+
+<!-- =========================
+PLACE ORDER
+========================= -->
+
+<div class="checkout-form">
+
+<button
+type="button"
+class="place-order-btn"
+onclick="placeOrder()">
+
+🛒 Place Order
+
+</button>
+
+</div>
+
+<!-- =========================
+SECURE CHECKOUT
+========================= -->
+
+<div class="secure-box">
+
+<h3>
+🔒 Secure Checkout
+</h3>
+
+<p>
+✔ Premium Jewellery Packaging Manufacturer
+</p>
+
+<p>
+✔ Secure Cloud Order Storage
+</p>
+
+<p>
+✔ Custom Printing Available
+</p>
+
+<p>
+✔ Design Upload Supported
+</p>
+
+<p>
+✔ Fast Order Processing
+</p>
+
+<p>
+✔ Safe Payment Options
+</p>
+
+</div>
+<!-- =========================
+FOOTER
+========================= -->
+
+</section>
+
+<footer>
+
+<p>
+
+<strong>
+
+MR Luxe Box & Bags
+
+</strong>
+
+</p>
+
+<p>
+
+Premium Jewellery Packaging Manufacturer
+
+</p>
+
+<p>
+
+📍 Kalyani, Nadia, West Bengal
+
+</p>
+
+<p>
+
+📞 +91 7029714746
+
+</p>
+
+<p>
+
+📧 mrluxeboxbags@gmail.com
+
+</p>
+
+<p>
+
+© 2026 MR Luxe Box & Bags. All Rights Reserved.
+
+</p>
+
+</footer>
+
+<!-- =========================
+WHATSAPP BUTTON
+========================= -->
+
+<a
+href="https://wa.me/917029714746"
+class="whatsapp-float"
+target="_blank">
+
+💬
+
+</a>
+
+<!-- =========================
+CALL BUTTON
+========================= -->
+
+<a
+href="tel:+917029714746"
+class="call-btn">
+
+📞
+
+</a>
+
+<!-- =========================
+JAVASCRIPT
+========================= -->
+
+<script
+type="module"
+src="script.js"
+defer>
+</script>
+
+</body>
+
+</html>
