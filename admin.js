@@ -244,7 +244,10 @@ async function loadOrders() {
                     onclick="updateOrderStatus('${docSnap.id}','Completed')">
                     Completed
                     </button>
-
+<button
+onclick='localStorage.setItem("lastOrder", JSON.stringify(order)); downloadInvoice();'>
+📄 Download Invoice
+</button>
                     <button
                     onclick="deleteOrder('${docSnap.id}')">
                     Delete
