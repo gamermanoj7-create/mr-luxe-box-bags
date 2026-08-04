@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Shopping Cart | MR Luxe Box & Bags</title>
+
+<meta name="description" content="Shopping Cart - MR Luxe Box & Bags">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<script src="products.js"></script>
+<script type="module" src="script.js"></script>
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-NHF26PN1JG"></script>
+
+<script>
+window.dataLayer = window.dataLayer || [];
+
+function gtag() {
+    dataLayer.push(arguments);
+}
+
+gtag('js', new Date());
+
+gtag('config', 'G-NHF26PN1JG');
+</script>
+
+</head>
+
+<body>
+
+<!-- =========================
+HEADER
+========================= -->
+
+<header>
+
+<div class="logo">
+
+<h1>MR Luxe Box &amp; Bags</h1>
+
+<p>Premium Jewellery Packaging Manufacturer</p>
+
+</div>
+
+</header>
+
+<!-- =========================
+NAVIGATION
+========================= -->
+
+<nav>
+
+<a href="index.html">Home</a>
+
+<a href="products.html">Products</a>
+<a href="my-orders.html">My Orders</a>
+<a href="about.html">About</a>
+
+<a href="contact.html">Contact</a>
+
+<a href="cart.html" class="active">Cart <span class="cart-badge" data-cart-count>0</span></a>
+
+<a href="admin.html">Admin</a>
+
+</nav>
+
+<!-- =========================
+PAGE TITLE
+========================= -->
+
+<section class="page-title">
+
+<h2>🛒 Shopping Cart</h2>
+
+<p>
+Review your selected products before checkout.
+</p>
+
+</section>
+
+<!-- =========================
+CART CONTAINER
+========================= -->
+
+<section class="cart-container">
+
+<h2 class="cart-title">Cart Items</h2>
+<div id="cartItems"></div>
+<hr>
+<h2 id="grandTotal">
+Total : ₹0
+</h2>
+<div class="cart-buttons">
+  <!-- =========================
+CART BUTTONS
+========================= -->
+
+<button onclick="clearCart()">
+
+    CLEAR CART
+
+</button>
+
+<a href="checkout.html" class="checkout-btn">
+
+    CHECKOUT →
+
+</a>
+
+</div>
+
+</section>
+
+<!-- =========================
+FOOTER
+========================= -->
+
+<footer>
+
+    <p><strong>MR Luxe Box &amp; Bags</strong></p>
+
+    <p>Premium Jewellery Packaging Manufacturer</p>
+
+    <p>📍 Kalyani, Nadia, West Bengal</p>
+
+    <p>📞 +91 7029714746</p>
+
+    <p>📧 mrluxeboxbags@gmail.com</p>
+
+    <p>© 2026 MR Luxe Box &amp; Bags. All Rights Reserved.</p>
+
+</footer>
+
+<!-- =========================
+CALL BUTTON
+========================= -->
+
+<a href="tel:+917029714746" class="call-btn">
+
+📞
+
+</a>
+
+<!-- =========================
+WHATSAPP BUTTON
+========================= -->
+
+<a href="https://wa.me/917029714746"
+class="whatsapp-float"
+target="_blank">
+
+💬
+
+</a>
+
+<!-- =========================
+CART PAGE LOGIC
+Renders window.Cart (from script.js) into #cartItems.
+Runs on DOMContentLoaded so it always runs after the
+module script above has finished, regardless of load order.
+========================= -->
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+  function renderCart() {
+    var wrap = document.getElementById("cartItems");
+    var totalEl = document.getElementById("grandTotal");
+    if (!wrap || !totalEl || !window.Cart) return;
+
+    var items = window.Cart.getDetailedItems();
+    var fmt = window.formatCurrency || function (n) { return "₹" + n; };
+
+    if (!items.length) {
+      wrap.innerHTML =
+        '<div class="empty-cart">' +
+        "<h2>Your cart is empty</h2>" +
+        '<p>Browse our <a href="products.html">product catalogue</a> to add items.</p>' +
+        "</div>";
+      totalEl.textContent = "Total : " + fmt(0);
+      return;
+    }
+
+    var html = "";
+    items.forEach(function (item) {
+      var subtotal = item.price * item.quantity;
+      html +=
+        '<div class="cart-card">' +
+          '<div class="cart-info">' +
+            "<h3>" + item.name + "</h3>" +
+            "<p>Unit Price: " + fmt(item.price) + "</p>" +
+            "<p>Quantity: " +
+              '<button class="minus-btn" onclick="changeCartQty(' + item.id + "," + (item.quantity - 1) + ')">−</button> ' +
+              item.quantity +
+              ' <button class="plus-btn" onclick="changeCartQty(' + item.id + "," + (item.quantity + 1) + ')">+</button>' +
+            "</p>" +
+            "<p>Subtotal: " + fmt(subtotal) + "</p>" +
+            '<button onclick="removeCartItem(' + item.id + ')">🗑 Remove</button>' +
+          "</div>" +
+        "</div>";
+    });
+
+    wrap.innerHTML = html;
+    totalEl.textContent = "Total : " + fmt(window.Cart.getSubtotal());
+  }
+
+  window.changeCartQty = function (id, qty) {
+    window.Cart.updateQuantity(id, qty);
+    renderCart();
+  };
+
+  window.removeCartItem = function (id) {
+    window.Cart.removeItem(id);
+    renderCart();
+  };
+
+  window.clearCart = function () {
+    if (!window.Cart) return;
+    if (window.Cart.getCount() === 0) return;
+    if (confirm("Remove all items from your cart?")) {
+      window.Cart.clear();
+      renderCart();
+    }
+  };
+
+  renderCart();
+
+  // Keep this tab's view in sync if the cart changes in another tab.
+  document.addEventListener("cart:updated", renderCart);
+});
+</script>
+
+</body>
+
+</html>

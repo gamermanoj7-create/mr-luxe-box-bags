@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- ============================================================
+       PRIMARY SEO — unchanged
+       ============================================================ -->
+  <title>Shop All Products | MR Luxe Box & Bags</title>
+  <meta name="description" content="Browse the full MR Luxe Box & Bags catalogue — premium rigid boxes, mailer boxes, folding cartons, paper bags, tote bags and more. Custom branding, wholesale pricing, fast delivery." />
+  <meta name="keywords" content="luxury packaging, custom boxes, custom bags, rigid boxes, mailer boxes, wholesale packaging, MR Luxe Box & Bags" />
+  <link rel="canonical" href="https://www.mrluxeboxbags.com/products.html" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Shop All Products | MR Luxe Box & Bags" />
+  <meta property="og:description" content="Browse premium custom boxes and bags — wholesale pricing, full branding options, fast delivery." />
+  <meta property="og:url" content="https://www.mrluxeboxbags.com/products.html" />
+
+  <!-- Existing site stylesheet — untouched -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- ============================================================
+       PAGE-SCOPED STYLES (products.html only)
+       Premium Apple / Amazon / Shopify inspired catalogue UI.
+       Reuses the design tokens already defined on :root in
+       style.css (--ink, --muted, --border, --radius-*, --shadow-*)
+       so this page stays visually consistent with the rest of the
+       site without touching style.css itself. Falls back to sane
+       defaults if a token is ever missing.
+       ============================================================ -->
+  <style>
+    /* ---- Shell ---- */
+    .catalogue-wrap{
+      max-width:1320px;
+      margin:0 auto;
+      padding:14px 20px 48px;
+    }
+
+    /* ---- Breadcrumb ---- */
+    .breadcrumb{
+      display:flex;
+      align-items:center;
+      gap:6px;
+      font-size:12.5px;
+      font-weight:600;
+      color:var(--muted,#666);
+      margin:0 0 14px;
+      letter-spacing:.01em;
+    }
+    .breadcrumb a{
+      color:var(--muted,#666);
+      text-decoration:none;
+      transition:color .15s ease;
+    }
+    .breadcrumb a:hover{ color:var(--ink,#111); }
+    .breadcrumb span{ color:var(--ink,#111); }
+
+    /* ---- Header ---- */
+    .catalogue-header{
+      margin-bottom:20px;
+    }
+    .catalogue-header h1{
+      font-size:clamp(1.5rem,3.6vw,2.1rem);
+      font-weight:800;
+      letter-spacing:-.01em;
+      margin:0 0 6px;
+      color:var(--ink,#111);
+    }
+    .catalogue-header p{
+      margin:0;
+      color:var(--muted,#666);
+      font-size:.98rem;
+    }
+    .catalogue-count{
+      font-size:.82rem;
+      font-weight:600;
+      color:var(--muted,#666);
+      margin-top:8px;
+      letter-spacing:.02em;
+      text-transform:uppercase;
+    }
+
+    /* ---- Filter card ---- */
+    .catalogue-toolbar{
+      display:grid;
+      gap:16px;
+      background:var(--card,#fff);
+      border:1px solid var(--border,#e2e2e2);
+      border-radius:16px;
+      box-shadow:var(--shadow-panel,0 2px 10px rgba(0,0,0,.06));
+      padding:20px 22px;
+      margin-bottom:22px;
+    }
+
+    .toolbar-title{
+      display:flex;
+      align-items:center;
+      gap:8px;
+      font-size:.98rem;
+      font-weight:700;
+      color:var(--ink,#111);
+    }
+    .toolbar-title .icon{ font-size:1rem; }
+
+    .toolbar-fields{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:14px;
+    }
+
+    .catalogue-toolbar .field{
+      display:flex;
+      flex-direction:column;
+      gap:6px;
+      min-width:0;
+    }
+
+    .catalogue-toolbar .field-search{
+      grid-column:1 / -1;
+    }
+
+    .catalogue-toolbar label{
+      font-size:.74rem;
+      font-weight:700;
+      text-transform:uppercase;
+      letter-spacing:.04em;
+      color:var(--muted,#666);
+    }
+
+    .catalogue-toolbar input[type="search"],
+    .catalogue-toolbar input[type="number"],
+    .catalogue-toolbar select{
+      width:100%;
+      padding:11px 13px;
+      border:1.5px solid var(--border,#e0e0e0);
+      border-radius:10px;
+      font-family:var(--font,inherit);
+      font-size:.9rem;
+      background:#fff;
+      color:var(--ink,#111);
+      transition:border-color .15s ease, box-shadow .15s ease;
+      appearance:auto;
+    }
+
+    .catalogue-toolbar input::placeholder{ color:#a3a3a3; }
+
+    .catalogue-toolbar input:focus,
+    .catalogue-toolbar select:focus{
+      outline:none;
+      border-color:var(--ink,#111);
+      box-shadow:0 0 0 3px rgba(17,17,17,.08);
+    }
+
+    .price-range-inputs{
+      display:flex;
+      align-items:center;
+      gap:8px;
+    }
+    .price-range-inputs input{ min-width:0; }
+    .price-range-inputs span{
+      color:var(--muted,#999);
+      font-weight:600;
+      flex-shrink:0;
+    }
+
+    .toolbar-actions{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      padding-top:2px;
+    }
+
+    .toolbar-actions button{
+      flex:1 1 160px;
+      padding:12px 20px;
+      border-radius:12px;
+      font-size:.88rem;
+      font-weight:700;
+      cursor:pointer;
+      transition:transform .12s ease, background-color .15s ease, border-color .15s ease;
+      letter-spacing:.01em;
+    }
+
+    .apply-btn{
+      background:var(--ink,#111);
+      color:#fff;
+      border:1.5px solid var(--ink,#111);
+    }
+    .apply-btn:hover{ background:var(--hover-ink,#333); }
+    .apply-btn:active{ transform:scale(.98); }
+
+    .reset-btn{
+      background:#fff;
+      color:var(--ink,#111);
+      border:1.5px solid var(--border,#ddd);
+    }
+    .reset-btn:hover{ background:#f6f6f6; border-color:#c9c9c9; }
+    .reset-btn:active{ transform:scale(.98); }
+
+    /* ---- Active filter chips ---- */
+    .active-filters{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      margin-bottom:18px;
+    }
+
+    .active-filters .chip{
+      display:inline-flex;
+      align-items:center;
+      gap:7px;
+      padding:6px 12px;
+      border-radius:999px;
+      background:#f1f1f1;
+      border:1px solid var(--border,#e5e5e5);
+      font-size:.78rem;
+      font-weight:600;
+      color:var(--ink,#111);
+    }
+
+    .active-filters .chip button{
+      border:none;
+      background:none;
+      cursor:pointer;
+      font-size:.95rem;
+      line-height:1;
+      opacity:.5;
+      color:inherit;
+      padding:0;
+    }
+    .active-filters .chip button:hover{ opacity:1; }
+
+    /* ---- Product grid ---- */
+    .product-grid{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      align-items:stretch;
+      gap:14px;
+    }
+
+    @media (min-width:560px){
+      .product-grid{ gap:18px; }
+    }
+    @media (min-width:768px){
+      .product-grid{ grid-template-columns:repeat(3,1fr); gap:20px; }
+    }
+    @media (min-width:1024px){
+      .product-grid{ grid-template-columns:repeat(4,1fr); }
+    }
+    @media (min-width:1440px){
+      .product-grid{ grid-template-columns:repeat(5,1fr); }
+    }
+
+    .product-card{
+      display:flex;
+      flex-direction:column;
+      height:100%;
+      border:1px solid var(--border,#eaeaea);
+      border-radius:16px;
+      overflow:hidden;
+      background:var(--card,#fff);
+      position:relative;
+      box-shadow:var(--shadow-card,0 1px 4px rgba(0,0,0,.05));
+      transition:box-shadow .2s ease, transform .2s ease, border-color .2s ease;
+    }
+
+    .product-card:hover{
+      box-shadow:var(--shadow-card-hover,0 10px 26px rgba(0,0,0,.1));
+      transform:translateY(-3px);
+      border-color:#e0e0e0;
+    }
+
+    .product-card .wishlist-toggle{
+      position:absolute;
+      top:10px;
+      right:10px;
+      width:34px;
+      height:34px;
+      border-radius:50%;
+      border:none;
+      background:rgba(255,255,255,.92);
+      backdrop-filter:blur(4px);
+      cursor:pointer;
+      font-size:1rem;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      z-index:2;
+      box-shadow:0 2px 8px rgba(0,0,0,.14);
+      transition:transform .15s ease;
+      color:#333;
+    }
+    .product-card .wishlist-toggle:hover{ transform:scale(1.08); }
+    .product-card .wishlist-toggle[data-active="true"]{ color:#d81b60; }
+
+    .product-card .card-media{
+      position:relative;
+      display:block;
+      width:100%;
+      aspect-ratio:1 / 1;
+      background:#f4f4f4;
+      overflow:hidden;
+    }
+
+    .product-card .card-media img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+      transition:transform .35s ease;
+    }
+    .product-card:hover .card-media img{ transform:scale(1.04); }
+
+    .card-badge{
+      position:absolute;
+      top:10px;
+      left:10px;
+      background:var(--ink,#111);
+      color:#fff;
+      font-size:.66rem;
+      font-weight:700;
+      text-transform:uppercase;
+      letter-spacing:.04em;
+      padding:5px 9px;
+      border-radius:999px;
+      z-index:2;
+    }
+    .card-badge[data-state="out"]{ background:var(--danger,#dc2626); }
+    .card-badge[data-state="limited"]{ background:#b7791f; }
+
+    .card-body{
+      padding:14px 16px 16px;
+      display:flex;
+      flex-direction:column;
+      gap:5px;
+      flex:1;
+    }
+
+    .card-category{
+      font-size:.68rem;
+      text-transform:uppercase;
+      letter-spacing:.05em;
+      color:var(--muted,#888);
+      font-weight:700;
+    }
+
+    .card-title{
+      font-size:.98rem;
+      font-weight:700;
+      margin:0;
+      line-height:1.35;
+      color:var(--ink,#111);
+      display:-webkit-box;
+      -webkit-line-clamp:2;
+      -webkit-box-orient:vertical;
+      overflow:hidden;
+      min-height:2.7em;
+    }
+    .card-title a{
+      color:inherit;
+      text-decoration:none;
+    }
+    .card-title a:hover{ text-decoration:underline; }
+
+    .card-rating{
+      font-size:.78rem;
+      color:var(--muted,#777);
+      font-weight:600;
+    }
+
+    .card-price-row{
+      display:flex;
+      align-items:baseline;
+      gap:8px;
+      margin-top:4px;
+    }
+
+    .card-price{
+      font-size:1.08rem;
+      font-weight:800;
+      color:var(--ink,#111);
+    }
+
+    .card-moq{
+      font-size:.72rem;
+      color:var(--muted,#999);
+    }
+
+    .card-actions{
+      margin-top:auto;
+      display:flex;
+      flex-wrap:nowrap;
+      align-items:stretch;
+      gap:6px;
+      padding-top:12px;
+      width:100%;
+      box-sizing:border-box;
+    }
+
+    .card-actions .btn{
+      flex:1 1 50%;
+      min-width:0;
+      max-width:50%;
+      box-sizing:border-box;
+      height:38px;
+      text-align:center;
+      padding:0 4px;
+      border-radius:10px;
+      font-size:clamp(.62rem, 2.6vw, .8rem);
+      font-weight:700;
+      line-height:1.1;
+      letter-spacing:-.01em;
+      cursor:pointer;
+      border:1.5px solid transparent;
+      text-decoration:none;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+      transition:background-color .15s ease, border-color .15s ease, transform .12s ease;
+    }
+    .card-actions .btn:active{ transform:scale(.97); }
+
+    .card-actions .btn-view{
+      flex:1 1 50%;
+      max-width:50%;
+      font-size:clamp(.56rem, 2.2vw, .72rem);
+      background:#fff;
+      border-color:var(--border,#ddd);
+      color:var(--ink,#111);
+    }
+    .card-actions .btn-view:hover{ background:#f5f5f5; border-color:#c9c9c9; }
+
+    .card-actions .btn-cart{
+      flex:1 1 50%;
+      max-width:50%;
+      background:var(--ink,#111);
+      color:#fff;
+    }
+    .card-actions .btn-cart:hover{ background:var(--hover-ink,#333); }
+    .card-actions .btn-cart[disabled]{
+      background:#aaa;
+      cursor:not-allowed;
+    }
+
+    @media (max-width:400px){
+      .card-actions{ gap:5px; }
+      .card-actions .btn{
+        height:36px;
+        padding:0 3px;
+        border-radius:8px;
+      }
+    }
+
+    /* ---- Skeleton loading state ---- */
+    .skeleton-card{
+      border:1px solid var(--border,#eee);
+      border-radius:16px;
+      overflow:hidden;
+      background:#fff;
+    }
+    .skeleton-block{
+      background:linear-gradient(90deg, rgba(0,0,0,.06) 25%, rgba(0,0,0,.1) 37%, rgba(0,0,0,.06) 63%);
+      background-size:400% 100%;
+      animation:skeleton-shimmer 1.4s ease infinite;
+    }
+    .skeleton-card .skeleton-media{ aspect-ratio:1 / 1; }
+    .skeleton-card .skeleton-line{
+      height:12px;
+      margin:14px 16px;
+      border-radius:6px;
+    }
+    .skeleton-card .skeleton-line.short{ width:55%; }
+
+    @keyframes skeleton-shimmer{
+      0%{ background-position:100% 50%; }
+      100%{ background-position:0 50%; }
+    }
+
+    /* ---- Empty state ---- */
+    .catalogue-empty{
+      grid-column:1 / -1;
+      text-align:center;
+      padding:70px 20px;
+      color:var(--muted,#777);
+    }
+    .catalogue-empty h2{
+      margin:0 0 8px;
+      font-size:1.25rem;
+      color:var(--ink,#111);
+    }
+    .catalogue-empty button{
+      margin-top:16px;
+      padding:11px 22px;
+      border-radius:10px;
+      border:1.5px solid var(--border,#ddd);
+      background:#fff;
+      cursor:pointer;
+      font-weight:700;
+      color:var(--ink,#111);
+      transition:background-color .15s ease;
+    }
+    .catalogue-empty button:hover{ background:#f5f5f5; }
+
+    /* ---- Pagination ---- */
+    .catalogue-pagination{
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      gap:6px;
+      margin-top:36px;
+      flex-wrap:wrap;
+    }
+    .catalogue-pagination button{
+      min-width:38px;
+      height:38px;
+      padding:0 10px;
+      border-radius:10px;
+      border:1.5px solid var(--border,#e0e0e0);
+      background:#fff;
+      cursor:pointer;
+      font-size:.85rem;
+      font-weight:700;
+      color:var(--ink,#111);
+      transition:background-color .15s ease;
+    }
+    .catalogue-pagination button:hover:not([disabled]){ background:#f5f5f5; }
+    .catalogue-pagination button[data-active="true"]{
+      background:var(--ink,#111);
+      color:#fff;
+      border-color:var(--ink,#111);
+    }
+    .catalogue-pagination button[disabled]{
+      opacity:.35;
+      cursor:not-allowed;
+    }
+    .catalogue-pagination .ellipsis{
+      padding:0 4px;
+      color:var(--muted,#999);
+    }
+
+    /* ---- Toast (cart / wishlist feedback) ---- */
+    #toast-region{
+      position:fixed;
+      bottom:20px;
+      left:50%;
+      transform:translateX(-50%);
+      z-index:9999;
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+      align-items:center;
+      pointer-events:none;
+    }
+    .toast{
+      background:var(--ink,#111);
+      color:#fff;
+      padding:10px 18px;
+      border-radius:10px;
+      font-size:.85rem;
+      font-weight:600;
+      box-shadow:0 8px 22px rgba(0,0,0,.28);
+      opacity:0;
+      transform:translateY(8px);
+      transition:opacity .25s ease, transform .25s ease;
+    }
+    .toast[data-visible="true"]{
+      opacity:1;
+      transform:translateY(0);
+    }
+
+    /* ---- Mobile refinements ---- */
+    @media (max-width:640px){
+      .catalogue-wrap{ padding:10px 14px 40px; }
+      .catalogue-toolbar{ padding:16px 16px; border-radius:16px; }
+      .toolbar-fields{ grid-template-columns:1fr 1fr; gap:10px; }
+      .toolbar-actions button{ flex:1 1 100%; }
+    }
+
+    @media (max-width:380px){
+      .toolbar-fields{ grid-template-columns:1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">
+      <h1>MR Luxe Box &amp; Bags</h1>
+      <p>Premium Jewellery Packaging Manufacturer</p>
+    </div>
+  </header>
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="products.html" class="active" aria-current="page">Products</a>
+    <a href="my-orders.html">My Orders</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+    <a href="cart.html">Cart <span class="cart-badge" data-cart-count>0</span></a>
+    <a href="admin.html">Admin</a>
+  </nav>
+
+  <main class="catalogue-wrap">
+
+    <nav aria-label="Breadcrumb" class="breadcrumb">
+      <a href="index.html">Home</a> <span>/</span> <span>Products</span>
+    </nav>
+
+    <div class="catalogue-header">
+      <h1>Shop All Products</h1>
+      <p>Premium custom boxes &amp; bags, made to order for your brand.</p>
+      <div class="catalogue-count" id="resultsCount" role="status" aria-live="polite"></div>
+    </div>
+
+    <!-- ================= TOOLBAR ================= -->
+    <form class="catalogue-toolbar" id="catalogueToolbar" role="search" onsubmit="return false;">
+
+      <div class="toolbar-title"><span class="icon">🔍</span><span>Search Products</span></div>
+
+      <div class="toolbar-fields">
+
+        <div class="field field-search">
+          <label for="searchInput">Search</label>
+          <input
+            type="search"
+            id="searchInput"
+            name="search"
+            placeholder="Search products, e.g. 'kraft box'"
+            autocomplete="off"
+          />
+        </div>
+
+        <div class="field">
+          <label for="categorySelect">Category</label>
+          <select id="categorySelect" name="category">
+            <option value="">All Categories</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="subcategorySelect">Subcategory</label>
+          <select id="subcategorySelect" name="subcategory">
+            <option value="">All Subcategories</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="minPrice">Price Range</label>
+          <div class="price-range-inputs">
+            <input type="number" id="minPrice" name="minPrice" min="0" step="0.01" placeholder="Min" />
+            <span>–</span>
+            <input type="number" id="maxPrice" name="maxPrice" min="0" step="0.01" placeholder="Max" />
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="sortSelect">Sort By</label>
+          <select id="sortSelect" name="sort">
+            <option value="relevance">Relevance</option>
+            <option value="price-asc">Price: Low to High</option>
+            <option value="price-desc">Price: High to Low</option>
+            <option value="name-asc">Name: A–Z</option>
+            <option value="name-desc">Name: Z–A</option>
+            <option value="rating-desc">Highest Rated</option>
+          </select>
+        </div>
+
+      </div>
+
+      <div class="toolbar-actions">
+        <button type="button" class="apply-btn" id="applyFiltersBtn">Apply Filters</button>
+        <button type="button" class="reset-btn" id="resetFiltersBtn">Reset</button>
+      </div>
+
+    </form>
+
+    <div class="active-filters" id="activeFilters" aria-live="polite"></div>
+
+    <!-- ================= PRODUCT GRID ================= -->
+    <section class="product-grid" id="productGrid" aria-live="polite">
+      <!-- Skeleton loading cards shown on first paint; replaced by
+           renderProductGrid() as soon as products.js has loaded. -->
+      <div class="skeleton-card"><div class="skeleton-block skeleton-media"></div><div class="skeleton-block skeleton-line"></div><div class="skeleton-block skeleton-line short"></div></div>
+      <div class="skeleton-card"><div class="skeleton-block skeleton-media"></div><div class="skeleton-block skeleton-line"></div><div class="skeleton-block skeleton-line short"></div></div>
+      <div class="skeleton-card"><div class="skeleton-block skeleton-media"></div><div class="skeleton-block skeleton-line"></div><div class="skeleton-block skeleton-line short"></div></div>
+      <div class="skeleton-card"><div class="skeleton-block skeleton-media"></div><div class="skeleton-block skeleton-line"></div><div class="skeleton-block skeleton-line short"></div></div>
+      <div class="skeleton-card"><div class="skeleton-block skeleton-media"></div><div class="skeleton-block skeleton-line"></div><div class="skeleton-block skeleton-line short"></div></div>
+      <div class="skeleton-card"><div class="skeleton-block skeleton-media"></div><div class="skeleton-block skeleton-line"></div><div class="skeleton-block skeleton-line short"></div></div>
+      <div class="skeleton-card"><div class="skeleton-block skeleton-media"></div><div class="skeleton-block skeleton-line"></div><div class="skeleton-block skeleton-line short"></div></div>
+      <div class="skeleton-card"><div class="skeleton-block skeleton-media"></div><div class="skeleton-block skeleton-line"></div><div class="skeleton-block skeleton-line short"></div></div>
+    </section>
+
+    <!-- ================= PAGINATION ================= -->
+    <nav class="catalogue-pagination" id="pagination" aria-label="Product pages"></nav>
+
+  </main>
+
+  <footer>
+    <p><strong>MR Luxe Box &amp; Bags</strong></p>
+    <p>Premium Jewellery Packaging Manufacturer</p>
+    <p>📍 Kalyani, Nadia, West Bengal</p>
+    <p>📞 +91 7029714746</p>
+    <p>📧 mrluxeboxbags@gmail.com</p>
+    <p>© 2026 MR Luxe Box &amp; Bags. All Rights Reserved.</p>
+  </footer>
+
+  <a href="https://wa.me/917029714746" class="whatsapp-float" target="_blank" aria-label="Chat on WhatsApp">💬</a>
+  <a href="tel:+917029714746" class="call-btn" aria-label="Call us">📞</a>
+
+  <div id="toast-region" aria-live="polite"></div>
+
+  <!-- ==================================================================
+       SCRIPT LOAD ORDER MATTERS:
+       1. products.js   -> exposes window.PRODUCTS / window.ProductData
+       2. script.js     -> exposes window.Cart / window.Wishlist / window.Catalogue helpers
+       3. inline page script -> wires the toolbar + grid to those helpers
+       (products.js and script.js are untouched — no logic changed there)
+       ================================================================== -->
+  <script src="products.js"></script>
+  <script src="script.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      if (window.CataloguePage && typeof window.CataloguePage.init === "function") {
+        window.CataloguePage.init({
+          gridSelector: "#productGrid",
+          toolbarSelector: "#catalogueToolbar",
+          paginationSelector: "#pagination",
+          activeFiltersSelector: "#activeFilters",
+          resultsCountSelector: "#resultsCount",
+          pageSize: 12
+        });
+      }
+
+      // "Apply Filters" button: every field already applies its filter
+      // live (script.js binds input/change listeners with a short
+      // debounce on search + price). This button simply fires those
+      // same native events immediately so the grid updates without
+      // waiting for the debounce, then scrolls the results into view —
+      // no changes to script.js/products.js required.
+      var applyBtn = document.getElementById("applyFiltersBtn");
+      if (applyBtn) {
+        applyBtn.addEventListener("click", function () {
+          ["searchInput", "categorySelect", "subcategorySelect", "minPrice", "maxPrice", "sortSelect"]
+            .forEach(function (id) {
+              var el = document.getElementById(id);
+              if (!el) return;
+              var eventType = (el.tagName === "SELECT") ? "change" : "input";
+              el.dispatchEvent(new Event(eventType, { bubbles: true }));
+            });
+
+          var grid = document.getElementById("productGrid");
+          if (grid) grid.scrollIntoView({ behavior: "smooth", block: "start" });
+        });
+      }
+    });
+  </script>
+
+</body>
+</html>

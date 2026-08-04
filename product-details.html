@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- ============================================================
+       DEFAULT / FALLBACK SEO
+       product.js overwrites every one of these as soon as the
+       product is resolved from the URL slug, so search engines and
+       social crawlers that don't execute JS still see something
+       reasonable, and the flash-of-default-title window is minimal.
+       ============================================================ -->
+  <title id="pageTitle">Product Details | MR Luxe Box & Bags</title>
+  <meta id="metaDescription" name="description" content="Explore premium custom boxes and bags from MR Luxe Box & Bags — full specifications, pricing and branding options." />
+  <meta id="metaKeywords" name="keywords" content="custom packaging, luxury box, luxury bag, MR Luxe Box & Bags" />
+  <link id="canonicalLink" rel="canonical" href="https://www.mrluxeboxbags.com/product-details.html" />
+
+  <!-- Open Graph -->
+  <meta id="ogType" property="og:type" content="product" />
+  <meta id="ogTitle" property="og:title" content="Product Details | MR Luxe Box & Bags" />
+  <meta id="ogDescription" property="og:description" content="Explore premium custom boxes and bags from MR Luxe Box & Bags." />
+  <meta id="ogUrl" property="og:url" content="https://www.mrluxeboxbags.com/product-details.html" />
+  <meta id="ogImage" property="og:image" content="" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta id="twitterTitle" name="twitter:title" content="Product Details | MR Luxe Box & Bags" />
+  <meta id="twitterDescription" name="twitter:description" content="Explore premium custom boxes and bags from MR Luxe Box & Bags." />
+  <meta id="twitterImage" name="twitter:image" content="" />
+
+  <!-- Schema.org Product structured data — populated by product.js.
+       Empty shell here so the tag always exists in the DOM. -->
+  <script type="application/ld+json" id="productSchema"></script>
+
+  <!-- Existing site stylesheet — untouched -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- ============================================================
+       PAGE-SCOPED STYLES
+       ============================================================ -->
+  <style>
+    .pd-wrap {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 28px 20px 90px;
+    }
+
+    .breadcrumb {
+      font-size: 0.82rem;
+      opacity: 0.7;
+      margin-bottom: 20px;
+    }
+
+    .breadcrumb a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .breadcrumb a:hover {
+      text-decoration: underline;
+    }
+
+    .breadcrumb .sep {
+      margin: 0 6px;
+      opacity: 0.5;
+    }
+
+    /* ---- Loading skeleton ---- */
+    .pd-skeleton {
+      display: grid;
+      grid-template-columns: minmax(280px, 1fr) minmax(280px, 1fr);
+      gap: 40px;
+    }
+
+    .pd-skeleton .skeleton-block {
+      background: linear-gradient(
+        90deg,
+        rgba(0, 0, 0, 0.06) 25%,
+        rgba(0, 0, 0, 0.1) 37%,
+        rgba(0, 0, 0, 0.06) 63%
+      );
+      background-size: 400% 100%;
+      animation: pd-shimmer 1.4s ease infinite;
+      border-radius: 10px;
+    }
+
+    @keyframes pd-shimmer {
+      0% { background-position: 100% 50%; }
+      100% { background-position: 0 50%; }
+    }
+
+    .pd-skeleton .skel-media { aspect-ratio: 1 / 1; }
+    .pd-skeleton .skel-line { height: 14px; margin-bottom: 12px; }
+    .pd-skeleton .skel-line.w60 { width: 60%; }
+    .pd-skeleton .skel-line.w40 { width: 40%; }
+    .pd-skeleton .skel-line.tall { height: 44px; margin-top: 20px; }
+
+    @media (max-width: 720px) {
+      .pd-skeleton { grid-template-columns: 1fr; }
+    }
+
+    /* ---- Not found state ---- */
+    .pd-not-found {
+      display: none;
+      text-align: center;
+      padding: 90px 20px;
+      max-width: 560px;
+      margin: 0 auto;
+    }
+
+    .pd-not-found .code {
+      font-size: 4.5rem;
+      font-weight: 800;
+      line-height: 1;
+      opacity: 0.15;
+      margin-bottom: 10px;
+    }
+
+    .pd-not-found h1 {
+      font-size: 1.5rem;
+      margin: 0 0 10px;
+    }
+
+    .pd-not-found p {
+      opacity: 0.75;
+      margin: 0 0 26px;
+    }
+
+    .pd-not-found .actions {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .pd-not-found .actions a,
+    .pd-not-found .actions button {
+      padding: 11px 22px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      text-decoration: none;
+      cursor: pointer;
+      border: 1px solid rgba(0, 0, 0, 0.2);
+    }
+
+    .pd-not-found .actions .primary {
+      background: #111;
+      color: #fff;
+      border-color: #111;
+    }
+
+    .pd-not-found .actions .secondary {
+      background: #fff;
+      color: #111;
+    }
+
+    /* ---- Main product layout ---- */
+    .pd-content {
+      display: none;
+    }
+
+    .pd-grid {
+      display: grid;
+      grid-template-columns: minmax(280px, 1fr) minmax(320px, 1fr);
+      gap: 46px;
+    }
+
+    @media (max-width: 780px) {
+      .pd-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ---- Gallery ---- */
+    .pd-gallery-main {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      background: #f2f2f2;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .pd-gallery-main img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .pd-badge {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      background: #111;
+      color: #fff;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      padding: 5px 10px;
+      border-radius: 4px;
+      z-index: 2;
+    }
+
+    .pd-badge[data-state="out"] { background: #DC2626; }
+    .pd-badge[data-state="limited"] { background: #444444; }
+
+    .pd-thumbs {
+      display: flex;
+      gap: 10px;
+      margin-top: 12px;
+      flex-wrap: wrap;
+    }
+
+    .pd-thumbs button {
+      width: 72px;
+      height: 72px;
+      padding: 0;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 2px solid transparent;
+      cursor: pointer;
+      background: #f2f2f2;
+    }
+
+    .pd-thumbs button[data-active="true"] {
+      border-color: #111;
+    }
+
+    .pd-thumbs img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* ---- Info column ---- */
+    .pd-category {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      font-weight: 700;
+      opacity: 0.55;
+      margin-bottom: 6px;
+    }
+
+    .pd-name {
+      font-size: 1.8rem;
+      line-height: 1.25;
+      margin: 0 0 10px;
+    }
+
+    .pd-meta-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-bottom: 14px;
+      font-size: 0.9rem;
+    }
+
+    .pd-rating {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .pd-availability {
+      font-weight: 700;
+      font-size: 0.8rem;
+      padding: 3px 10px;
+      border-radius: 999px;
+      background: rgba(30, 140, 60, 0.12);
+      color: #1e8c3c;
+    }
+
+    .pd-availability[data-state="out"] {
+      background: rgba(179, 38, 30, 0.12);
+      color: #b3261e;
+    }
+
+    .pd-availability[data-state="limited"] {
+      background: rgba(168, 108, 0, 0.12);
+      color: #a86c00;
+    }
+
+    .pd-price-row {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      margin-bottom: 6px;
+    }
+
+    .pd-price {
+      font-size: 2rem;
+      font-weight: 800;
+    }
+
+    .pd-price-unit {
+      font-size: 0.85rem;
+      opacity: 0.6;
+    }
+
+    .pd-moq {
+      font-size: 0.85rem;
+      opacity: 0.7;
+      margin-bottom: 20px;
+    }
+
+    .pd-description {
+      line-height: 1.65;
+      margin-bottom: 22px;
+      opacity: 0.9;
+    }
+
+    /* ---- Spec list ---- */
+    .pd-specs {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px 24px;
+      margin-bottom: 22px;
+      padding: 18px;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      border-radius: 10px;
+      background: rgba(0, 0, 0, 0.015);
+    }
+
+    .pd-specs dt {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      opacity: 0.55;
+      font-weight: 700;
+      margin: 0;
+    }
+
+    .pd-specs dd {
+      margin: 2px 0 10px;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 460px) {
+      .pd-specs { grid-template-columns: 1fr; }
+    }
+
+    /* ---- Chips: colours / print options ---- */
+    .pd-block-title {
+      font-size: 0.85rem;
+      font-weight: 700;
+      margin: 0 0 10px;
+    }
+
+    .pd-chip-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 22px;
+    }
+
+    .pd-chip {
+      padding: 6px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(0, 0, 0, 0.18);
+      font-size: 0.8rem;
+      background: #fff;
+    }
+
+    /* ---- Features list ---- */
+    .pd-features {
+      list-style: none;
+      margin: 0 0 24px;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .pd-features li {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      font-size: 0.9rem;
+      line-height: 1.4;
+    }
+
+    .pd-features li::before {
+      content: "\2713";
+      flex-shrink: 0;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: rgba(17, 17, 17, 0.08);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.65rem;
+      font-weight: 700;
+      margin-top: 2px;
+    }
+
+    /* ---- Quantity + actions ---- */
+    .pd-qty-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .pd-qty-row label {
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    .pd-qty-control {
+      display: inline-flex;
+      align-items: center;
+      border: 1px solid rgba(0, 0, 0, 0.2);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .pd-qty-control button {
+      width: 36px;
+      height: 38px;
+      border: none;
+      background: #fff;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+
+    .pd-qty-control button:hover {
+      background: rgba(0, 0, 0, 0.05);
+    }
+
+    .pd-qty-control input {
+      width: 60px;
+      height: 38px;
+      border: none;
+      border-left: 1px solid rgba(0, 0, 0, 0.15);
+      border-right: 1px solid rgba(0, 0, 0, 0.15);
+      text-align: center;
+      font-size: 0.9rem;
+    }
+
+    .pd-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    .pd-actions .btn {
+      flex: 1 1 150px;
+      text-align: center;
+      padding: 13px 18px;
+      border-radius: 9px;
+      font-weight: 700;
+      font-size: 0.92rem;
+      cursor: pointer;
+      border: 1px solid transparent;
+    }
+
+    .pd-actions .btn-cart {
+      background: #fff;
+      border-color: #111;
+      color: #111;
+    }
+
+    .pd-actions .btn-cart:hover { background: rgba(0, 0, 0, 0.05); }
+
+    .pd-actions .btn-buy {
+      background: #111;
+      color: #fff;
+    }
+
+    .pd-actions .btn-buy:hover { background: #333; }
+
+    .pd-actions .btn[disabled] {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .pd-secondary-actions {
+      display: flex;
+      gap: 18px;
+      align-items: center;
+      font-size: 0.85rem;
+    }
+
+    .pd-secondary-actions button {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      font-size: 0.85rem;
+      font-weight: 600;
+      opacity: 0.8;
+    }
+
+    .pd-secondary-actions button:hover { opacity: 1; }
+
+    .pd-secondary-actions button[data-active="true"] {
+      color: #d81b60;
+      opacity: 1;
+    }
+
+    /* ---- Related / recently viewed sections ---- */
+    .pd-section {
+      margin-top: 60px;
+    }
+
+    .pd-section h2 {
+      font-size: 1.3rem;
+      margin: 0 0 18px;
+    }
+
+    .pd-related-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 20px;
+    }
+
+    .pd-related-card {
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      border-radius: 12px;
+      overflow: hidden;
+      background: #fff;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      transition: box-shadow 0.15s ease;
+    }
+
+    .pd-related-card:hover {
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+    }
+
+    .pd-related-card .media {
+      aspect-ratio: 1 / 1;
+      background: #f2f2f2;
+      overflow: hidden;
+    }
+
+    .pd-related-card .media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .pd-related-card .body {
+      padding: 12px 14px 14px;
+    }
+
+    .pd-related-card .name {
+      font-size: 0.9rem;
+      font-weight: 700;
+      margin: 0 0 4px;
+      line-height: 1.35;
+    }
+
+    .pd-related-card .price {
+      font-size: 0.9rem;
+      font-weight: 800;
+    }
+
+    /* ---- Toast (shared with products.html) ---- */
+    #toast-region {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      align-items: center;
+      pointer-events: none;
+    }
+
+    .toast {
+      background: #111;
+      color: #fff;
+      padding: 10px 18px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity 0.25s ease, transform 0.25s ease;
+    }
+
+    .toast[data-visible="true"] {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">
+      <h1>MR Luxe Box &amp; Bags</h1>
+      <p>Premium Jewellery Packaging Manufacturer</p>
+    </div>
+  </header>
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="products.html" class="active" aria-current="page">Products</a>
+    <a href="my-orders.html">My Orders</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+    <a href="cart.html">Cart <span class="cart-badge" data-cart-count>0</span></a>
+    <a href="admin.html">Admin</a>
+  </nav>
+
+  <main class="pd-wrap">
+
+    <!-- ================= BREADCRUMB ================= -->
+    <nav class="breadcrumb" id="breadcrumb" aria-label="Breadcrumb">
+      <a href="index.html">Home</a><span class="sep">/</span>
+      <a href="products.html">Products</a><span class="sep" id="breadcrumbCategorySep" style="display:none;">/</span>
+      <a href="#" id="breadcrumbCategory" style="display:none;"></a><span class="sep" id="breadcrumbProductSep" style="display:none;">/</span>
+      <span id="breadcrumbProduct"></span>
+    </nav>
+
+    <!-- ================= LOADING SKELETON ================= -->
+    <div class="pd-skeleton" id="productSkeleton">
+      <div class="skeleton-block skel-media"></div>
+      <div>
+        <div class="skeleton-block skel-line w40"></div>
+        <div class="skeleton-block skel-line w60" style="height:26px;"></div>
+        <div class="skeleton-block skel-line w40"></div>
+        <div class="skeleton-block skel-line" style="height:80px;"></div>
+        <div class="skeleton-block skel-line tall"></div>
+      </div>
+    </div>
+
+    <!-- ================= NOT FOUND STATE ================= -->
+    <section class="pd-not-found" id="productNotFound">
+      <div class="code">404</div>
+      <h1>We couldn't find that product</h1>
+      <p>The item you're looking for may have been renamed, discontinued, or the link may be incorrect. Browse our full catalogue to find what you need.</p>
+      <div class="actions">
+        <a class="primary" href="products.html">Browse All Products</a>
+        <a class="secondary" href="contact.html">Contact Us</a>
+      </div>
+    </section>
+
+    <!-- ================= PRODUCT CONTENT ================= -->
+    <article class="pd-content" id="productContent">
+      <div class="pd-grid">
+
+        <!-- ---- Gallery ---- -->
+        <div class="pd-gallery">
+          <div class="pd-gallery-main">
+            <span class="pd-badge" id="galleryBadge" style="display:none;"></span>
+            <img id="galleryMainImage" src="" alt="" />
+          </div>
+          <div class="pd-thumbs" id="galleryThumbs"></div>
+        </div>
+
+        <!-- ---- Info ---- -->
+        <div class="pd-info">
+          <div class="pd-category" id="productCategory"></div>
+          <h1 class="pd-name" id="productName"></h1>
+
+          <div class="pd-meta-row">
+            <span class="pd-rating" id="productRating"></span>
+            <span class="pd-availability" id="productAvailability"></span>
+          </div>
+
+          <div class="pd-price-row">
+            <span class="pd-price" id="productPrice"></span>
+            <span class="pd-price-unit">per unit</span>
+          </div>
+          <div class="pd-moq" id="productMOQ"></div>
+
+          <p class="pd-description" id="productDescription"></p>
+
+          <dl class="pd-specs">
+            <dt>Material</dt>
+            <dd id="specMaterial"></dd>
+            <dt>Finish</dt>
+            <dd id="specFinish"></dd>
+            <dt>Printing</dt>
+            <dd id="specPrinting"></dd>
+            <dt>Usage</dt>
+            <dd id="specUsage"></dd>
+            <dt>Delivery</dt>
+            <dd id="specDelivery"></dd>
+            <dt>Minimum Order</dt>
+            <dd id="specMOQ"></dd>
+          </dl>
+
+          <div id="colourBlock">
+            <h2 class="pd-block-title">Available Colours</h2>
+            <div class="pd-chip-group" id="productColours"></div>
+          </div>
+
+          <div id="printOptionsBlock">
+            <h2 class="pd-block-title">Printing Options</h2>
+            <div class="pd-chip-group" id="productPrintOptions"></div>
+          </div>
+
+          <div id="featuresBlock">
+            <h2 class="pd-block-title">Features</h2>
+            <ul class="pd-features" id="productFeatures"></ul>
+          </div>
+
+          <div class="pd-qty-row">
+            <label for="quantityInput">Quantity</label>
+            <div class="pd-qty-control">
+              <button type="button" id="qtyDecrease" aria-label="Decrease quantity">&minus;</button>
+              <input type="number" id="quantityInput" min="1" step="1" value="1" />
+              <button type="button" id="qtyIncrease" aria-label="Increase quantity">+</button>
+            </div>
+          </div>
+
+          <div class="pd-actions">
+            <button type="button" class="btn btn-cart" id="addToCartBtn">Add to Cart</button>
+            <button type="button" class="btn btn-buy" id="buyNowBtn">Buy Now</button>
+          </div>
+
+          <div class="pd-secondary-actions">
+            <button type="button" id="wishlistBtn" data-active="false" aria-pressed="false">
+              <span id="wishlistIcon">&#9825;</span> <span id="wishlistLabel">Add to Wishlist</span>
+            </button>
+            <button type="button" id="shareBtn">
+              <span>&#8599;</span> Share
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ================= RELATED PRODUCTS ================= -->
+      <section class="pd-section" id="relatedSection">
+        <h2>You May Also Like</h2>
+        <div class="pd-related-grid" id="relatedProducts"></div>
+      </section>
+
+      <!-- ================= RECENTLY VIEWED ================= -->
+      <section class="pd-section" id="recentlyViewedSection" style="display:none;">
+        <h2>Recently Viewed</h2>
+        <div class="pd-related-grid" id="recentlyViewedProducts"></div>
+      </section>
+    </article>
+
+  </main>
+
+  <footer>
+    <p><strong>MR Luxe Box &amp; Bags</strong></p>
+    <p>Premium Jewellery Packaging Manufacturer</p>
+    <p>📍 Kalyani, Nadia, West Bengal</p>
+    <p>📞 +91 7029714746</p>
+    <p>📧 mrluxeboxbags@gmail.com</p>
+    <p>© 2026 MR Luxe Box &amp; Bags. All Rights Reserved.</p>
+  </footer>
+
+  <a href="https://wa.me/917029714746" class="whatsapp-float" target="_blank" aria-label="Chat on WhatsApp">💬</a>
+  <a href="tel:+917029714746" class="call-btn" aria-label="Call us">📞</a>
+
+  <div id="toast-region" aria-live="polite"></div>
+
+  <!-- ==================================================================
+       SCRIPT LOAD ORDER MATTERS:
+       1. products.js -> window.PRODUCTS / window.ProductData
+       2. script.js   -> window.Cart / window.Wishlist / window.RecentlyViewed / window.Toast
+       3. product.js  -> reads the URL slug and renders this page
+       ================================================================== -->
+  <script src="products.js"></script>
+  <script src="script.js"></script>
+  <script src="product.js"></script>
+
+</body>
+</html>
