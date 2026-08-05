@@ -1,0 +1,91 @@
+rules_version = '2';
+
+// ===========================================
+// MR LUXE BOX & BAGS — Firestore Security Rules
+// ===========================================
+//
+// WHY THIS FILE MATTERS:
+// admin.js and login.js check `user.email === "gamermanoj7@gmail.com"`
+// in the BROWSER. That's UI convenience only — it does nothing to
+// stop someone from opening devtools and calling deleteDoc/updateDoc
+// on the "orders" collection directly, or querying it wholesale to
+// read every customer's name/phone/address. The actual security
+// boundary has to live here, in rules that run on Firebase's servers.
+//
+// Deploy with: firebase deploy --only firestore:rules
+// (requires firebase.json to point at this file)
+// ===========================================
+
+function isAdmin() {
+  return request.auth != null &&
+         request.auth.token.email == "gamermanoj7@gmail.com";
+}
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ---------------------------------------
+    // ORDERS
+    // ---------------------------------------
+    match /orders/{orderId} {
+
+      // Anyone can CREATE an order (placing an order doesn't require
+      // login in this app) — but only with well-formed data, so a
+      // tampered request can't write junk/oversized fields or an
+      // orderStatus other than "Pending".
+      allow create: if
+        request.resource.data.customerName is string &&
+        request.resource.data.customerName.size() > 0 &&
+        request.resource.data.customerName.size() < 200 &&
+        request.resource.data.phone is string &&
+        request.resource.data.phone.size() > 0 &&
+        request.resource.data.phone.size() < 20 &&
+        request.resource.data.address is string &&
+        request.resource.data.address.size() < 500 &&
+        request.resource.data.orderStatus == "Pending";
+
+      // Reading a single order by ID is fine (the app never needs a
+      // bare "get all orders" for the my-orders page — it queries by
+      // phone). A list query still has to satisfy this same rule for
+      // every doc it returns, which is why "list" queries on the raw
+      // collection stay effectively admin-only below.
+      allow get: if isAdmin();
+
+      // Only the admin account may update status or delete orders —
+      // this is the rule that actually enforces what admin.js's UI
+      // only pretends to enforce.
+      allow update, delete: if isAdmin();
+    }
+
+    // A collection-level list/query (e.g. my-orders.js's
+    // where("phone","==",phone) search, or admin.js's getDocs(ordersRef))
+    // is only allowed for the admin. If you want the public "my orders"
+    // phone lookup to keep working without requiring customers to log
+    // in, that lookup should go through a Cloud Function that checks
+    // the phone number server-side and returns only matching orders —
+    // open collection-wide reads gated only by a query filter are not
+    // secure, since a client can always drop the filter.
+    match /orders/{orderId} {
+      allow list: if isAdmin();
+    }
+
+    // ---------------------------------------
+    // CONTACT FORM SUBMISSIONS
+    // ---------------------------------------
+    match /contacts/{contactId} {
+      allow create: if
+        request.resource.data.name is string &&
+        request.resource.data.name.size() > 0 &&
+        request.resource.data.name.size() < 200 &&
+        request.resource.data.message is string &&
+        request.resource.data.message.size() < 2000;
+
+      allow read, update, delete: if isAdmin();
+    }
+
+    // Deny everything else by default.
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
