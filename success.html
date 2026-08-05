@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Order Successful | MR Luxe Box & Bags</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Poppins,sans-serif;
+}
+
+body{
+background:#111;
+display:flex;
+justify-content:center;
+align-items:center;
+min-height:100vh;
+padding:20px;
+}
+
+.success-card{
+width:100%;
+max-width:430px;
+background:#1b1b1b;
+border:1px solid rgba(212,175,55,.25);
+border-radius:20px;
+padding:35px 25px;
+text-align:center;
+box-shadow:0 20px 50px rgba(0,0,0,.35);
+}
+
+.logo{
+width:70px;
+height:70px;
+margin:auto;
+margin-bottom:20px;
+}
+
+.logo img{
+width:100%;
+height:100%;
+object-fit:contain;
+}
+
+.icon{
+width:90px;
+height:90px;
+margin:auto;
+background:#d4af37;
+color:#000;
+font-size:45px;
+font-weight:bold;
+display:flex;
+justify-content:center;
+align-items:center;
+border-radius:50%;
+margin-bottom:25px;
+}
+
+h1{
+color:#fff;
+font-size:30px;
+margin-bottom:10px;
+}
+
+.subtitle{
+color:#bbb;
+margin-bottom:25px;
+line-height:1.7;
+}
+
+.order-box{
+background:#111;
+border:1px dashed #d4af37;
+border-radius:15px;
+padding:18px;
+margin-bottom:25px;
+}
+
+.order-box h3{
+color:#d4af37;
+font-size:15px;
+margin-bottom:10px;
+}
+
+.order-id{
+color:#fff;
+font-size:28px;
+font-weight:700;
+letter-spacing:2px;
+}
+
+.btn{
+display:block;
+width:100%;
+padding:15px;
+margin-top:15px;
+border-radius:12px;
+text-decoration:none;
+font-weight:600;
+font-size:16px;
+transition:.3s;
+}
+
+.primary{
+background:#d4af37;
+color:#000;
+}
+
+.secondary{
+border:2px solid #d4af37;
+color:#d4af37;
+}
+
+.primary:hover{
+background:#f2ca4a;
+}
+
+.secondary:hover{
+background:#d4af37;
+color:#000;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="success-card">
+
+<div class="logo">
+<img src="IMAGES/logo.png" alt="MR Luxe Box & Bags">
+</div>
+
+<div class="icon">
+✓
+</div>
+
+<h1>Order Successful</h1>
+
+<p class="subtitle">
+Thank you for choosing<br>
+<b>MR Luxe Box & Bags</b>.<br><br>
+
+Your order has been placed successfully.
+</p>
+
+<div class="order-box">
+
+<h3>Your Order ID</h3>
+
+<div class="order-id" id="orderId">
+Loading...
+</div>
+
+</div>
+
+<a href="my-orders.html" class="btn primary">
+Track My Order
+</a>
+
+<a href="products.html" class="btn secondary">
+Continue Shopping
+</a>
+
+</div>
+
+<script>
+const order = JSON.parse(localStorage.getItem("successOrder") || "{}");
+
+document.getElementById("orderId").textContent =
+order.orderId || localStorage.getItem("lastOrderId") || "N/A";
+</script>
+
+</body>
+</html>
