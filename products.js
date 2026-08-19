@@ -687,6 +687,89 @@
         "Luxury Box",
         "Premium Packaging"
       ]
+    },
+
+
+
+    /* ===========================================================
+       PRODUCT 9
+    ============================================================ */
+
+    {
+      id: 9,
+
+      slug: "premium-d-cut-shopping-bag",
+
+      name: "Premium D-Cut Shopping Bag",
+
+      category: "Bags",
+
+      subcategory: "D-Cut Bag",
+
+      price: 20,
+
+      minimumOrder: 100,
+
+      image: "IMAGES/d-cut-shopping-bag.png",
+
+      gallery: [
+        "IMAGES/d-cut-shopping-bag.png"
+      ],
+
+      description:
+        "Premium glossy D-cut plastic shopping bag with sturdy die-cut handle, custom branded with logo printing. Ideal for jewellery shops, retail stores and gift packaging.",
+
+      material:
+        "LDPE / HDPE Plastic Sheet",
+
+      finish:
+        "Glossy Finish",
+
+      printing:
+        "Screen Printing | Offset Printing",
+
+      usage:
+        "Shopping Bag | Retail Bag | Gift Carry Bag",
+
+      delivery:
+        "5-7 Working Days",
+
+      features: [
+        "Strong D-Cut Handle",
+        "Glossy Finish",
+        "Waterproof",
+        "Reusable",
+        "Custom Logo Printing"
+      ],
+
+      colours: [
+        "White",
+        "Black",
+        "Transparent"
+      ],
+
+      printOptions: [
+        "Screen Printing",
+        "Offset Printing"
+      ],
+
+      rating: 5,
+
+      reviewCount: 0,
+
+      availability: "In Stock",
+
+      seoTitle:
+        "Premium D-Cut Shopping Bag | MR Luxe Box & Bags",
+
+      seoDescription:
+        "Premium D-Cut Plastic Shopping Bags Manufacturer in India.",
+
+      seoKeywords: [
+        "D-Cut Bag",
+        "Shopping Bag",
+        "Plastic Carry Bag"
+      ]
     }
 
   ];
